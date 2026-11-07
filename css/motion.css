@@ -1,0 +1,61 @@
+@keyframes drift{from{transform:translate3d(0,0,0)}to{transform:translate3d(16px,-12px,0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes fadeout{from{opacity:1}to{opacity:0}}
+@keyframes in-fwd{from{opacity:0;transform:translate3d(28px,0,0)}to{opacity:1;transform:none}}
+@keyframes out-fwd{from{opacity:1;transform:none;filter:none}to{opacity:.6;transform:translate3d(-12px,0,0);filter:brightness(.6)}}
+@keyframes in-back{from{opacity:.6;transform:translate3d(-12px,0,0);filter:brightness(.6)}to{opacity:1;transform:none;filter:none}}
+@keyframes out-back{from{opacity:1;transform:none}to{opacity:0;transform:translate3d(28px,0,0)}}
+@keyframes sheet-in{from{transform:translate3d(0,100%,0)}to{transform:none}}
+@keyframes sheet-out{from{transform:none}to{transform:translate3d(0,100%,0)}}
+@keyframes toast-in{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+@keyframes toast-out{from{opacity:1}to{opacity:0;transform:translate3d(0,8px,0)}}
+@keyframes pop{0%{transform:scale(.2);opacity:0}60%{transform:scale(1.18);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-1.5px)}75%{transform:translateX(1.5px)}}
+@keyframes msg-swap{0%{opacity:1;transform:none}45%{opacity:0;transform:translate3d(0,-8px,0)}55%{opacity:0;transform:translate3d(0,8px,0)}100%{opacity:1;transform:none}}
+@keyframes wiggle{0%,100%{transform:translateX(0) rotate(0)}30%{transform:translateX(10px) rotate(2.5deg)}60%{transform:translateX(-8px) rotate(-2deg)}}
+@keyframes row-in{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:none}}
+@keyframes row-out{from{opacity:1;max-height:80px}to{opacity:0;max-height:0}}
+@keyframes rise-in{from{opacity:0;transform:translate3d(0,40px,0) scale(.96)}to{opacity:1;transform:none}}
+
+.page.enter-fwd{animation:in-fwd 320ms var(--ease) both}
+.page.leave-fwd{animation:out-fwd 320ms var(--ease) both;pointer-events:none}
+.page.enter-back{animation:in-back 320ms var(--ease) both}
+.page.leave-back{animation:out-back 320ms var(--ease) both;pointer-events:none}
+.page.enter-fade{animation:fadein 160ms linear both}
+.page.leave-fade{animation:fadeout 160ms linear both;pointer-events:none}
+.row-in{animation:row-in 240ms var(--ease) both}
+.row-out{overflow:hidden;animation:row-out 240ms var(--ease) both}
+.stagger>*{animation:row-in 360ms var(--ease) both}
+.stagger>*:nth-child(2){animation-delay:60ms}.stagger>*:nth-child(3){animation-delay:120ms}
+.stagger>*:nth-child(4){animation-delay:180ms}.stagger>*:nth-child(5){animation-delay:240ms}
+.swap{animation:msg-swap 240ms var(--ease) both}
+
+/* 동작 줄이기: 이동·확대·회전·뒤집기·탄성·떨림·이어 세기·배경 이동을 끄고 모든 전환을 투명도 160ms로 */
+html.reduce .bg::before{animation:none}
+html.reduce .page.enter-fwd,html.reduce .page.enter-back{animation:fadein 160ms linear both}
+html.reduce .page.leave-fwd,html.reduce .page.leave-back{animation:fadeout 160ms linear both}
+html.reduce .row-in,html.reduce .stagger>*,html.reduce .swap{animation:fadein 160ms linear both;animation-delay:0ms}
+html.reduce .row-out{animation:fadeout 160ms linear both}
+html.reduce .cta,html.reduce .chip,html.reduce .tbtn{transition:opacity 160ms linear}
+html.reduce .cta:active{transform:none}
+@media (prefers-reduced-motion:reduce){.bg::before{animation:none}}
+html.reduce .flip-panel{transform:none!important;opacity:0;transition:opacity 160ms linear!important}
+html.reduce .flip-wrap.open .flip-panel{opacity:1}
+html.reduce .flip-wrap.closing .flip-panel{opacity:0}
+html.reduce .flip-scrim{transition:opacity 160ms linear}
+html.reduce .sheet{animation:fadein 160ms linear both}
+html.reduce .sheet-wrap.closing .sheet{animation:fadeout 160ms linear both}
+html.reduce .toast{animation:fadein 160ms linear both}
+html.reduce .toast.out{animation:fadeout 160ms linear both}
+html.reduce .card{transition:opacity 160ms linear,box-shadow 160ms linear}
+html.reduce .card.arrive,html.reduce .stack.rise .card,html.reduce .stack-empty.in{animation:fadein 160ms linear both}
+html.reduce .card.nx{transform:none}
+html.reduce .welcome .demo,html.reduce .hold.shaking{animation:none}
+html.reduce .check-pop{animation:fadein 160ms linear both}
+html.reduce .acc-body,html.reduce .paste-wrap{transition:none}
+html.reduce .tab-ink,html.reduce .back-card{transition:opacity 160ms linear}
+html.reduce [aria-expanded="true"]>.ic,html.reduce .paste-t[aria-expanded="true"] .ic{transform:none}
+html.reduce .r1{transition:opacity 160ms linear}
+html.reduce .r1.gone{transform:none}
+html.reduce .t4{transition:opacity 160ms linear}
+html.paused .bg::before{animation-play-state:paused}

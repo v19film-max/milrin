@@ -1,0 +1,17 @@
+/* 색·글꼴·곡선은 시안 3.2판 :root 값 그대로. 새 색을 만들지 않는다. */
+:root{
+  --ink-0:#0B0F0D; --ink-1:#121815; --ink-2:#1A221E;
+  --text:#F3F6F1; --text-2:#B4BEB6;
+  --lime:#C8F169; --on-lime:#0E1A06;
+  --solo:#B7A6FF;   /* 왼쪽 · 아니야 */
+  --later:#FFC857;  /* 위 · 기억 안 나 / 비어 있는 추측 / 오래 못 받은 날짜 / 오류 글자 */
+  --teal:#4FD6C0;
+  --line:rgba(255,255,255,.10);
+  --font:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --ease:cubic-bezier(.2,.9,.2,1);
+  --ease-in:cubic-bezier(.4,0,.9,.6);
+  --ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --ease-flip:cubic-bezier(.3,.9,.3,1);
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+}
